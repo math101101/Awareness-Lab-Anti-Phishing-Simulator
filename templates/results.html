@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Awareness Lab • Results</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="bg-grid"></div>
+
+  <main class="container">
+    <header class="topbar">
+      <div class="brand">
+        <span class="dot"></span>
+        <a class="brandlink" href="{{ url_for('inbox') }}">Awareness<span class="muted">Lab</span></a>
+      </div>
+      <div class="actions">
+        <a class="btn btn-ghost" href="{{ url_for('inbox') }}">Inbox</a>
+        <a class="btn btn-ghost" href="{{ url_for('export_csv') }}">Export CSV</a>
+        <a class="btn btn-ghost" href="{{ url_for('reset') }}">Reset</a>
+      </div>
+    </header>
+
+    <section class="card glass">
+      <div class="row">
+        <div>
+          <h1>Resultados da sessão</h1>
+          <p class="sub">Pontuação baseada nas suas decisões. Continue treinando abrindo mais e-mails.</p>
+        </div>
+        <div class="scorebox">
+          <div class="scorelabel">SCORE</div>
+          <div class="score">{{ score }}</div>
+          <div class="scorehint">{{ total }} ação(ões)</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="two-cols">
+        <div class="panel">
+          <h2>Histórico (últimas 20 ações)</h2>
+
+          {% if actions|length == 0 %}
+            <p class="sub">Nenhuma ação registrada ainda. Volte na inbox e abra um e-mail.</p>
+          {% else %}
+          <div class="table compact">
+            <div class="thead">
+              <div>Email</div>
+              <div>Ação</div>
+              <div class="right">Status</div>
+            </div>
+            {% for a in actions %}
+              {% set email_id = a[0] %}
+              {% set action = a[1] %}
+              {% set correct = a[2] %}
+              <div class="trow">
+                <div class="mono">#{{ email_id }}</div>
+                <div>{{ "Report" if action == "report" else "Click" }}</div>
+                <div class="right">
+                  {% if correct == 1 %}
+                    <span class="pill pill-good">OK</span>
+                  {% else %}
+                    <span class="pill pill-bad">FAIL</span>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="panel">
+          <h2>Interpretação do score</h2>
+          <ul class="list">
+            <li><span class="pill pill-good">80+</span> Excelente: olhar clínico e decisões consistentes</li>
+            <li><span class="pill">30–79</span> Bom: ainda cai em alguns gatilhos (urgência/links)</li>
+            <li><span class="pill pill-bad">≤ 29</span> Atenção: reforçar verificação de remetente e URL</li>
+          </ul>
+
+          <div class="divider"></div>
+
+          <h2>Próximos passos</h2>
+          <p class="sub">
+            Sugestão: adicione mais e-mails (legítimos e phishing) e crie uma tela de
+            “por que era phishing” após cada ação.
+          </p>
+
+          <div class="btn-row">
+            <a class="btn btn-primary" href="{{ url_for('inbox') }}">Continuar treino</a>
+            <a class="btn btn-ghost" href="{{ url_for('export_csv') }}">Baixar CSV</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>📁 O CSV exportado fica em <span class="mono">reports/sessions.csv</span></span>
+    </footer>
+  </main>
+</body>
+</html>

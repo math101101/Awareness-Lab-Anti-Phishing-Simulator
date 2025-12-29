@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Awareness Lab • Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="bg-grid"></div>
+
+  <main class="container">
+    <header class="topbar">
+      <div class="brand">
+        <span class="dot"></span>
+        <span>Awareness</span><span class="muted">Lab</span>
+      </div>
+      <div class="tag">anti-phishing simulator</div>
+    </header>
+
+    <section class="card glass">
+      <h1>Entrar no laboratório</h1>
+      <p class="sub">Simulador educacional de engenharia social. Treine, erre sem risco e aprenda rápido.</p>
+
+      {% if error %}
+      <div class="alert alert-danger">
+        <strong>Ops:</strong> {{ error }}
+      </div>
+      {% endif %}
+
+      <form method="post" class="form">
+        <label for="name">Seu nome</label>
+        <div class="input-row">
+          <input id="name" name="name" type="text" placeholder="ex: Matheus" autocomplete="off" />
+          <button class="btn btn-primary" type="submit">Iniciar</button>
+        </div>
+        <p class="hint">
+          Dica: avalie remetente, links e tom de urgência. Nenhum clique aqui tem impacto real — é treino.
+        </p>
+      </form>
+
+      <div class="divider"></div>
+      <div class="meta">
+        <span class="chip">SOC mindset</span>
+        <span class="chip">Awareness</span>
+        <span class="chip">Blue Team</span>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>⚠️ Ambiente simulado. Não use para fins maliciosos.</span>
+    </footer>
+  </main>
+</body>
+</html>

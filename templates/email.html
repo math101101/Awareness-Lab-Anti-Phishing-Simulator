@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Awareness Lab • Email</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="bg-grid"></div>
+
+  <main class="container">
+    <header class="topbar">
+      <div class="brand">
+        <span class="dot"></span>
+        <a class="brandlink" href="{{ url_for('inbox') }}">Awareness<span class="muted">Lab</span></a>
+      </div>
+      <div class="actions">
+        <a class="btn btn-ghost" href="{{ url_for('inbox') }}">← Voltar</a>
+        <a class="btn btn-ghost" href="{{ url_for('results') }}">Resultados</a>
+      </div>
+    </header>
+
+    <section class="card glass">
+      <div class="email-head">
+        <div>
+          <h1 class="email-title">{{ email.subject }}</h1>
+          <div class="email-meta">
+            <span class="chip">From:</span>
+            <span class="mono">{{ email.from }}</span>
+          </div>
+        </div>
+        <div class="tag">analisar</div>
+      </div>
+
+      <div class="email-body">
+        <pre>{{ email.body }}</pre>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="two-cols">
+        <div class="panel">
+          <h2>O que você faz?</h2>
+          <p class="sub">Escolha uma ação como se estivesse na vida real.</p>
+
+          <div class="btn-row">
+            <form method="post" action="{{ url_for('take_action', email_id=email.id, action='report') }}">
+              <button class="btn btn-good" type="submit">✅ Reportar phishing</button>
+            </form>
+
+            <form method="post" action="{{ url_for('take_action', email_id=email.id, action='click') }}">
+              <button class="btn btn-bad" type="submit">❌ Clicar no link</button>
+            </form>
+          </div>
+
+          <p class="hint">Você pode abrir outros e-mails também. A pontuação acumula por sessão.</p>
+        </div>
+
+        <div class="panel">
+          <h2>Indicadores comuns</h2>
+          <ul class="list">
+            <li>Domínios parecidos (typosquatting)</li>
+            <li>Links encurtados ou mascarados</li>
+            <li>Urgência, ameaça, pressão</li>
+            <li>Pedido de senha/código/PIX</li>
+            <li>Erros de linguagem e inconsistência</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>🔎 Treino rápido: examine sempre remetente + link + intenção.</span>
+    </footer>
+  </main>
+</body>
+</html>

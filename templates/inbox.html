@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Awareness Lab • Inbox</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="bg-grid"></div>
+
+  <main class="container">
+    <header class="topbar">
+      <div class="brand">
+        <span class="dot"></span>
+        <a class="brandlink" href="{{ url_for('inbox') }}">Awareness<span class="muted">Lab</span></a>
+      </div>
+      <div class="actions">
+        <a class="btn btn-ghost" href="{{ url_for('reset') }}">Reset sessão</a>
+        <a class="btn btn-ghost" href="{{ url_for('results') }}">Ver resultados</a>
+      </div>
+    </header>
+
+    <section class="card glass">
+      <div class="row">
+        <div>
+          <h1>Inbox simulada</h1>
+          <p class="sub">Abra os e-mails e decida: <span class="good">reportar</span> ou <span class="bad">clicar</span>.</p>
+        </div>
+        <div class="tag">modo: treino</div>
+      </div>
+
+      <div class="table">
+        <div class="thead">
+          <div>Remetente</div>
+          <div>Assunto</div>
+          <div class="right">Ação</div>
+        </div>
+
+        {% for e in emails %}
+        <div class="trow">
+          <div class="mono">{{ e.from }}</div>
+          <div>
+            <div class="subject">{{ e.subject }}</div>
+            <div class="snippet">{{ e.body[:80] }}{% if e.body|length > 80 %}...{% endif %}</div>
+          </div>
+          <div class="right">
+            <a class="btn btn-primary" href="{{ url_for('view_email', email_id=e.id) }}">Abrir</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="divider"></div>
+      <div class="hint">
+        <strong>Checklist rápido:</strong> domínio real? link encurtado? urgência? pedido de senha? tom estranho?
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>🟢 Dica: trate tudo como suspeito até provar o contrário.</span>
+    </footer>
+  </main>
+</body>
+</html>
