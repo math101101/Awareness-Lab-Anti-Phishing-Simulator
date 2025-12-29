@@ -1,9 +1,4 @@
-🧠 Awareness Lab – Anti-Phishing Simulator
-
-🎯 Educational Blue Team Project
-Interactive security awareness lab focused on phishing detection and user behavior.
-
-🚨 About the Project
+## 🚨 About the Project
 
 Awareness Lab is an educational anti-phishing simulator that recreates a corporate email inbox where users must analyze messages and decide whether to report phishing attempts or interact with malicious content.
 
@@ -11,7 +6,7 @@ The project was designed to demonstrate security awareness, engineering social a
 
 ⚠️ No real emails are sent and no sensitive data is collected.
 
-🎯 Goals
+## 🎯 Goals
 
 Simulate phishing awareness campaigns
 
@@ -23,7 +18,7 @@ Generate awareness metrics and reports
 
 Provide a portfolio-ready cybersecurity project
 
-🧪 Features
+## 🧪 Features
 
 Simulated user login (session-based)
 
@@ -45,31 +40,34 @@ CSV report export
 
 Dark Hacker Lab UI
 
-📊 Awareness Scoring Logic
+## 📊 Awareness Scoring Logic
 Action	Result	Score
+
 Correct phishing report	✅	+10
+
 Incorrect phishing report	❌	-5
+
 Clicking phishing link	❌	-15
+
 Clicking legitimate email	⚠️	+5
 
-Scoring rules can be easily customized.
-
-🧱 Project Structure
-awareness-lab/
-├── app.py
-├── requirements.txt
-├── README.md
-├── reports/
-│   └── sessions.csv
-├── templates/
-│   ├── login.html
-│   ├── inbox.html
-│   ├── email.html
-│   └── results.html
-└── static/
+## 🧱 Project Structure
+   awareness-lab/
+   
+   ├── app.py   
+   ├── requirements.txt   
+   ├── README.md   
+   ├── reports/   
+   │   └── sessions.csv  
+   ├── templates/   
+   │   ├── login.html   
+   │   ├── inbox.html   
+   │   ├── email.html   
+   │   └── results.html
+   └── static/
    └── style.css
 
-🛠️ Tech Stack
+## 🛠️ Tech Stack
 
 Python 3
 
@@ -83,7 +81,7 @@ CSS3 (Dark UI / Glassmorphism)
 
 CSV reporting
 
-🚀 Running Locally
+## 🚀 Running Locally
 git clone https://github.com/SEU-USUARIO/awareness-lab.git
 cd awareness-lab
 
@@ -93,31 +91,7 @@ python -m venv .venv
 pip install -r requirements.txt
 python app.py
 
-
-Access in your browser:
-
-http://127.0.0.1:5000
-
-📁 Reports
-
-Session results are automatically stored in:
-
-reports/sessions.csv
-
-
-Each record includes:
-
-Timestamp
-
-Session ID
-
-User name
-
-Final score
-
-Total actions
-
-🧠 Security Concepts Covered
+## 🧠 Security Concepts Covered
 
 Phishing Awareness
 
@@ -131,7 +105,7 @@ SOC mindset
 
 Defensive security education
 
-🔮 Future Improvements
+## 🔮 Future Improvements
 
 Email-by-email feedback explaining phishing indicators
 
@@ -145,12 +119,12 @@ SIEM integration (simulated)
 
 Incident response playbook
 
-⚠️ Disclaimer
+## ⚠️ Disclaimer
 
 This project is for educational and demonstration purposes only.
 It must not be used for real phishing campaigns or malicious activities.
 
-👨‍💻 Author
+## 👨‍💻 Author
 
 Matheus Costa Silva
 Cybersecurity • Blue Team • Security Awareness
